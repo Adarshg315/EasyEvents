@@ -2,6 +2,6 @@
 .env
 yarn.lock
 yarn-error.log
-
+.vscode
 # Dependency directories
 node_modules/

@@ -7,6 +7,7 @@ const app = express();
 
 const graphQlSchema = require("./graphql/schema/index");
 const graphQlResolvers = require("./graphql/resolvers/index");
+
 app.use(bodyParser.json());
 
 app.use(
