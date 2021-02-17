@@ -1,0 +1,37 @@
+.auth-form {
+	width: 25rem;
+	max-width: 80%;
+	margin: 5rem auto;
+}
+
+.form-control label,
+.form-control input {
+	width: 100%;
+	display: block;
+}
+
+.form-control label {
+	margin-bottom: 0.5rem;
+}
+
+.form-control {
+	margin-bottom: 1rem;
+}
+
+.form-actions button {
+	background-color: bisque;
+	font: inherit;
+	border: 1px solid bisque;
+	border-radius: 3px;
+	padding: 0.25rem 1rem;
+	margin: 0 1rem;
+	margin-right: 1rem;
+	box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.26);
+	cursor: pointer;
+}
+
+.form-actions button:hover,
+.form-actions button:active {
+	background-color: rgb(212, 188, 157);
+	border-color: rgb(212, 188, 157);
+}
