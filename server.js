@@ -9,7 +9,6 @@ const graphQlResolvers = require("./graphql/resolvers/index");
 const path = require("path");
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname + "client", "build")));
 
 app.use((req, res, next) => {
 	res.setHeader("Access-Control-Allow-Origin", "*");
@@ -40,6 +39,9 @@ app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname + "client", "build", "index.html"));
 });
 
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static(path.join(__dirname + "client", "build")));
+}
 app.listen(PORT, () => {
 	console.log(`Server started at PORT ${PORT}`);
 });
