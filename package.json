@@ -5,7 +5,8 @@
 	"main": "app.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "nodemon index.js"
+		"start": "node server.js",
+		"heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
 	},
 	"author": "Adarsh",
 	"license": "ISC",
@@ -17,9 +18,13 @@
 		"express-graphql": "^0.12.0",
 		"graphql": "^15.5.0",
 		"jsonwebtoken": "^8.5.1",
-		"mongoose": "^5.11.15"
+		"mongoose": "^5.11.15",
+		"path": "^0.12.7"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.7"
+	},
+	"engines": {
+		"node": "v12.20.0"
 	}
 }

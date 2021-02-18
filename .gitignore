@@ -3,5 +3,9 @@
 yarn.lock
 yarn-error.log
 .vscode
+*.orig
+.idea/
+.DS_Store
+
 # Dependency directories
 node_modules/
