@@ -2,11 +2,14 @@
 	"name": "comm-man-sys",
 	"version": "1.0.0",
 	"description": "community management system",
-	"main": "index.js",
+	"main": "server.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node server.js",
-		"heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+		"client": "npm start --prefix client",
+		"server": "nodemon server.js",
+		"dev": "concurrently \"npm run server\" \"npm run client \"",
+		"heroku-postbuild": "NPM_CONFIG_PRODUCATION=false npm install --prefix client && npm run build --prefix client"
 	},
 	"author": "Adarsh",
 	"license": "ISC",
