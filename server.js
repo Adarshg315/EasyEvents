@@ -2,7 +2,6 @@ require("dotenv").config({ path: "./config/.env" });
 const express = require("express");
 const bodyParser = require("body-parser");
 const { graphqlHTTP } = require("express-graphql");
-// const db = require("./models/user");
 const app = express();
 const isAuth = require("./middleware/is-auth");
 const graphQlSchema = require("./graphql/schema/index");
