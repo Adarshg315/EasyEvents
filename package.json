@@ -9,7 +9,7 @@
 		"client": "npm start --prefix client",
 		"server": "nodemon server.js",
 		"dev": "concurrently \"npm run server\" \"npm run client \"",
-		"heroku-postbuild": "NPM_CONFIG_PRODUCATION=false npm install --prefix client && npm run build --prefix client"
+		"heroku-postbuild": "cd client && npm install && npm run build"
 	},
 	"author": "Adarsh",
 	"license": "ISC",
