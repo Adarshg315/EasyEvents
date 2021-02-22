@@ -30,18 +30,21 @@ app.use(
 		graphiql: true,
 	})
 );
-const PORT = process.env.port || 7000;
+const PORT = process.env.port || 5000;
 
 const connectDB = require("./config/db.config");
 connectDB();
 
-app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+// app.get("*", (req, res) => {
+// 	res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// });
 
-if (process.env.NODE_ENV === "production") {
-	app.use(express.static("client/build"));
-}
+app.get('/', (req, res) => { res.send('Hello from Express!')
+
+
+// if (process.env.NODE_ENV === "production") {
+// 	app.use(express.static("client/build"));
+// }
 app.listen(PORT, () => {
 	console.log(`Server started at PORT ${PORT}`);
 });
