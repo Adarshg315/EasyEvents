@@ -6,11 +6,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node server.js",
-		"build": "cd client && npm run build",
-		"install-client": "cd client && npm install",
-		"client": "cd client && npm start",
-		"dev": "concurrently \"npm run server\" \"npm run client \"",
-		"heroku-postbuild": "npm install-client && npm run build"
+		"heroku-postbuild": "cd server && npm run build"
 	},
 	"author": "Adarsh",
 	"license": "ISC",
@@ -30,6 +26,6 @@
 	},
 	"engines": {
 		"node": "v12.20.0",
-		"npm":"6.14.8"
+		"npm": "6.14.8"
 	}
 }
