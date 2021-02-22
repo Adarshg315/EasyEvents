@@ -19,19 +19,19 @@
 }
 
 .form-actions button {
-	background-color: bisque;
+	background: bisque;
 	font: inherit;
 	border: 1px solid bisque;
 	border-radius: 3px;
 	padding: 0.25rem 1rem;
-	margin: 0 1rem;
 	margin-right: 1rem;
-	box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.26);
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.26);
+	color: black;
 	cursor: pointer;
 }
 
 .form-actions button:hover,
 .form-actions button:active {
-	background-color: rgb(212, 188, 157);
-	border-color: rgb(212, 188, 157);
+	background: #6219d6;
+	border-color: #6219d6;
 }
