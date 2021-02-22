@@ -27,7 +27,7 @@ app.use(
 		graphiql: true,
 	})
 );
-
+const port = process.env.PORT;
 const connectDB = require("./config/db.config");
 connectDB();
 
@@ -42,6 +42,6 @@ app.get("/", (req, res) => {
 	res.send("Hello from Express!");
 });
 
-app.listen(process.env.PORT || 5000, () => {
-	console.log(`Server started at port ${PORT}`);
+app.listen(port || 5000, () => {
+	console.log(`Server started at port ${port}`);
 });
