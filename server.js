@@ -9,7 +9,6 @@ const graphQlResolvers = require("./graphql/resolvers/index");
 const path = require("path");
 
 app.use(bodyParser.json());
-
 app.use((req, res, next) => {
 	res.setHeader("Access-Control-Allow-Origin", "*");
 	res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
@@ -19,9 +18,7 @@ app.use((req, res, next) => {
 	}
 	next();
 });
-
 app.use(isAuth);
-
 app.use(
 	"/graphql",
 	graphqlHTTP({
@@ -30,7 +27,6 @@ app.use(
 		graphiql: true,
 	})
 );
-const port = process.env.PORT || 5000;
 
 const connectDB = require("./config/db.config");
 connectDB();
@@ -46,6 +42,6 @@ app.get("/", (req, res) => {
 	res.send("Hello from Express!");
 });
 
-app.listen(port, () => {
-	console.log(`Server started at port ${PORT}`);
+app.listen(process.env.PORT || 5000, () => {
+	console.log(`Server started at port ${port}`);
 });
