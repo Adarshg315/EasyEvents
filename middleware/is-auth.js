@@ -14,16 +14,14 @@ module.exports = (req, res, next) => {
 	let decodedToken;
 	try {
 		decodedToken = jwt.verify(token, "somesupersecretkey");
-	} catch (error) {
+	} catch (err) {
 		req.isAuth = false;
 		return next();
 	}
-
 	if (!decodedToken) {
 		req.isAuth = false;
 		return next();
 	}
-
 	req.isAuth = true;
 	req.userId = decodedToken.userId;
 	next();

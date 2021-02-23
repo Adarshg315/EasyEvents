@@ -2,11 +2,11 @@ require("dotenv").config({ path: "./config/.env" });
 const express = require("express");
 const bodyParser = require("body-parser");
 const { graphqlHTTP } = require("express-graphql");
-const app = express();
-const isAuth = require("./middleware/is-auth");
 const graphQlSchema = require("./graphql/schema/index");
 const graphQlResolvers = require("./graphql/resolvers/index");
 const path = require("path");
+const isAuth = require("./middleware/is-auth");
+const app = express();
 
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -37,10 +37,6 @@ if (process.env.NODE_ENV === "production") {
 		res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 	});
 }
-
-app.get("/", (req, res) => {
-	res.send("Hello from Express!");
-});
 
 app.listen(port, () => {
 	console.log(`Server started at port ${port}`);

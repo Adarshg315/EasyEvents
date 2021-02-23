@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import "./Auth.css";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 
 class AuthComponent extends Component {
 	state = {
@@ -33,30 +33,38 @@ class AuthComponent extends Component {
 
 		let requestBody = {
 			query: `
-        query {
-          login(email: "${email}", password: "${password}") {
+        query Login($email: String!, $password: String!) {
+          login(email: $email, password: $password) {
             userId
             token
             tokenExpiration
           }
         }
       `,
+			variables: {
+				email: email,
+				password: password,
+			},
 		};
 
 		if (!this.state.isLogin) {
 			requestBody = {
 				query: `
-          mutation {
-            createUser(userInput: {email: "${email}", password: "${password}"}) {
+          mutation CreateUser($email: String!, $password: String!) {
+            createUser(userInput: {email: $email, password: $password}) {
               _id
               email
             }
           }
         `,
+				variables: {
+					email: email,
+					password: password,
+				},
 			};
 		}
 
-		fetch("https://comm-man-sys.herokuapp.com/graphql", {
+		fetch("https://comm-man-sys.herokuapp.com/", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -70,7 +78,7 @@ class AuthComponent extends Component {
 				return res.json();
 			})
 			.then((resData) => {
-				// console.log(resData.data.login.token);
+				console.log(resData);
 				if (resData.data.login.token) {
 					this.context.login(
 						resData.data.login.token,
@@ -105,5 +113,4 @@ class AuthComponent extends Component {
 		);
 	}
 }
-
 export default AuthComponent;

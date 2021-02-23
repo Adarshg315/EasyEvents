@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
-import AuthComponent from "./components/Auth";
-import BookingsComponent from "./components/Bookings";
+import AuthComponent from "./components/Auth/Auth";
+import BookingsComponent from "./components/Bookings/Bookings";
 import EventsComponent from "./components/Events";
 import MainNavigation from "./components/Navigation/MainNavigation";
 import AuthContext from "./context/AuthContext";
