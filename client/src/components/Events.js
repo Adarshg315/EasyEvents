@@ -21,7 +21,7 @@ class EventsComponent extends Component {
 	constructor(props) {
 		super(props);
 		this.titleElRef = React.createRef();
-		this.priceElRef = React.createRef();
+
 		this.dateElRef = React.createRef();
 		this.descriptionElRef = React.createRef();
 	}
@@ -37,20 +37,19 @@ class EventsComponent extends Component {
 	modalConfirmHandler = () => {
 		this.setState({ creating: false });
 		const title = this.titleElRef.current.value;
-		const price = +this.priceElRef.current.value;
+
 		const date = this.dateElRef.current.value;
 		const description = this.descriptionElRef.current.value;
 
 		if (
 			title.trim().length === 0 ||
-			price <= 0 ||
 			date.trim().length === 0 ||
 			description.trim().length === 0
 		) {
 			return;
 		}
 
-		const event = { title, price, date, description };
+		const event = { title, date, description };
 		console.log(event);
 
 		const requestBody = {
@@ -61,14 +60,14 @@ class EventsComponent extends Component {
               title
               description
               date
-              price
+              
             }
           }
         `,
 			variables: {
 				title: title,
 				desc: description,
-				price: price,
+
 				date: date,
 			},
 		};
@@ -97,7 +96,7 @@ class EventsComponent extends Component {
 						title: resData.data.createEvent.title,
 						description: resData.data.createEvent.description,
 						date: resData.data.createEvent.date,
-						price: resData.data.createEvent.price,
+
 						creator: {
 							_id: this.context.userId,
 						},
@@ -124,7 +123,7 @@ class EventsComponent extends Component {
               title
               description
               date
-              price
+              
               creator {
                 _id
                 email
@@ -234,10 +233,7 @@ class EventsComponent extends Component {
 								<label htmlFor="title">Title</label>
 								<input type="text" id="title" ref={this.titleElRef} />
 							</div>
-							<div className="form-control">
-								<label htmlFor="price">Price</label>
-								<input type="number" id="price" ref={this.priceElRef} />
-							</div>
+
 							<div className="form-control">
 								<label htmlFor="date">Date</label>
 								<input type="datetime-local" id="date" ref={this.dateElRef} />
@@ -264,7 +260,6 @@ class EventsComponent extends Component {
 					>
 						<h1>{this.state.selectedEvent.title}</h1>
 						<h2>
-							${this.state.selectedEvent.price} -{" "}
 							{new Date(this.state.selectedEvent.date).toLocaleDateString()}
 						</h2>
 						<p>{this.state.selectedEvent.description}</p>
