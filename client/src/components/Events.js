@@ -74,7 +74,7 @@ class EventsComponent extends Component {
 
 		const token = this.context.token;
 
-		fetch("http://localhost:5000/graphql", {
+		fetch("https://comm-man-sys.herokuapp.com/graphql", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -133,7 +133,7 @@ class EventsComponent extends Component {
         `,
 		};
 
-		fetch("http://localhost:5000/graphql", {
+		fetch("https://comm-man-sys.herokuapp.com/graphql", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -188,7 +188,7 @@ class EventsComponent extends Component {
 			},
 		};
 
-		fetch("http://localhost:5000/graphql", {
+		fetch("https://comm-man-sys.herokuapp.com/graphql", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
