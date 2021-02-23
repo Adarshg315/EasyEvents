@@ -64,7 +64,7 @@ class AuthComponent extends Component {
 			};
 		}
 
-		fetch("https://comm-man-sys.herokuapp.com/", {
+		fetch("https://comm-man-sys.herokuapp.com/graphql", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
