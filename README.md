@@ -1,4 +1,4 @@
-# comm-man-sys
+# comansys
 community management system    
 <p>
 <a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
