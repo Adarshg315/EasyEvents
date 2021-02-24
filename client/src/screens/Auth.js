@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 
 import "./Auth.css";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 
 class AuthComponent extends Component {
 	state = {
@@ -12,8 +12,8 @@ class AuthComponent extends Component {
 
 	constructor(props) {
 		super(props);
-		this.emailEl = React.createRef();
-		this.passwordEl = React.createRef();
+		this.emailEl = createRef();
+		this.passwordEl = createRef();
 	}
 
 	switchModeHandler = () => {
@@ -64,7 +64,7 @@ class AuthComponent extends Component {
 			};
 		}
 
-		fetch("https://comm-man-sys.herokuapp.com/graphql", {
+		fetch("http://localhost:5000/graphql", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {

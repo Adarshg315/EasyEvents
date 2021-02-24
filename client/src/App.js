@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
-import AuthComponent from "./components/Auth/Auth";
-import BookingsComponent from "./components/Bookings/Bookings";
-import EventsComponent from "./components/Events";
+import AuthComponent from "./screens/Auth";
+import BookingsComponent from "./screens/Bookings";
+import EventsComponent from "./screens/Events";
 import MainNavigation from "./components/Navigation/MainNavigation";
 import AuthContext from "./context/AuthContext";
 
 import "./App.css";
 
-export default class App extends Component {
+class App extends Component {
 	state = {
 		token: null,
 		userId: null,
@@ -58,3 +58,5 @@ export default class App extends Component {
 		);
 	}
 }
+
+export default App;

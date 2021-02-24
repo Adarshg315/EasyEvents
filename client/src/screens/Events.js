@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-
-import Modal from "./Modal/Modal";
-import Backdrop from "./Backdrop/Backdrop";
-import EventList from "./Events/EventList/EventList";
-import Spinner from "./Spinner/Spinner";
+import Modal from "../components/Modal/Modal";
+import Backdrop from "../components/Backdrop/Backdrop";
+import EventList from "../components/Events/EventList/EventList";
+import Spinner from "../components/Spinner/Spinner";
 import AuthContext from "../context/AuthContext";
 import "./Events.css";
 
-class EventsComponent extends Component {
+class EventComponent extends Component {
 	state = {
 		creating: false,
 		events: [],
@@ -54,8 +53,8 @@ class EventsComponent extends Component {
 
 		const requestBody = {
 			query: `
-          mutation CreateEvent($title: String!, $desc: String!, $price: Float!, $date: String!) {
-            createEvent(eventInput: {title: $title, description: $desc, price: $price, date: $date}) {
+          mutation CreateEvent($title: String!, $desc: String!, $date: String!) {
+            createEvent(eventInput: {title: $title, description: $desc,  date: $date}) {
               _id
               title
               description
@@ -74,7 +73,7 @@ class EventsComponent extends Component {
 
 		const token = this.context.token;
 
-		fetch("https://comm-man-sys.herokuapp.com/graphql", {
+		fetch("http://localhost:5000/graphql", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -133,7 +132,7 @@ class EventsComponent extends Component {
         `,
 		};
 
-		fetch("https://comm-man-sys.herokuapp.com/graphql", {
+		fetch("http://localhost:5000/graphql", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -188,7 +187,7 @@ class EventsComponent extends Component {
 			},
 		};
 
-		fetch("https://comm-man-sys.herokuapp.com/graphql", {
+		fetch("http://localhost:5000/graphql", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -233,7 +232,6 @@ class EventsComponent extends Component {
 								<label htmlFor="title">Title</label>
 								<input type="text" id="title" ref={this.titleElRef} />
 							</div>
-
 							<div className="form-control">
 								<label htmlFor="date">Date</label>
 								<input type="datetime-local" id="date" ref={this.dateElRef} />
@@ -287,4 +285,4 @@ class EventsComponent extends Component {
 	}
 }
 
-export default EventsComponent;
+export default EventComponent;
