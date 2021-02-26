@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import Spinner from "../components/Spinner/Spinner";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../context/auth-context";
 import BookingList from "../components/Bookings/BookingList/BookingList";
 import BookingsChart from "../components/Bookings/BookingsChart/BookingsChart";
 import BookingsControls from "../components/Bookings/BookingsControls/BookingsControls";

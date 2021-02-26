@@ -1,9 +1,9 @@
-import React, { Component, createRef } from "react";
+import React, { Component } from "react";
 
 import "./Auth.css";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../context/auth-context";
 
-class AuthComponent extends Component {
+class AuthPage extends Component {
 	state = {
 		isLogin: true,
 	};
@@ -12,8 +12,8 @@ class AuthComponent extends Component {
 
 	constructor(props) {
 		super(props);
-		this.emailEl = createRef();
-		this.passwordEl = createRef();
+		this.emailEl = React.createRef();
+		this.passwordEl = React.createRef();
 	}
 
 	switchModeHandler = () => {
@@ -78,7 +78,6 @@ class AuthComponent extends Component {
 				return res.json();
 			})
 			.then((resData) => {
-				console.log(resData);
 				if (resData.data.login.token) {
 					this.context.login(
 						resData.data.login.token,
@@ -113,4 +112,5 @@ class AuthComponent extends Component {
 		);
 	}
 }
-export default AuthComponent;
+
+export default AuthPage;
