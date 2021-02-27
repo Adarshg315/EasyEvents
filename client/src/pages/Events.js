@@ -18,23 +18,7 @@ const EventsPage = () => {
 	const [events, setEvents] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [selectedEvent, setSelectedEvent] = useState(null);
-	// const [prevState, setPreviosState] = useState(null);
 
-	// setPreviosState = (prevState) =>{
-	// 	(prevState) => {
-	// 				const updatedEvents = [...prevState.events];
-	// 				updatedEvents.push({
-	// 					_id: resData.data.createEvent._id,
-	// 					title: resData.data.createEvent.title,
-	// 					description: resData.data.createEvent.description,
-	// 					date: resData.data.createEvent.date,
-	// 					price: resData.data.createEvent.price,
-	// 					creator: {
-	// 						_id: context.userId,
-	// 					},
-	// 				});
-	// 				return { events: updatedEvents };
-	// }
 	var isActive = true;
 
 	const context = useContext(AuthContext);
@@ -109,8 +93,9 @@ const EventsPage = () => {
 				return res.json();
 			})
 			.then((resData) => {
-				this.setState((prevState) => {
-					const updatedEvents = [...prevState.events];
+				setEvents(() => {
+					const updatedEvents = [...events];
+					console.log(updatedEvents);
 					updatedEvents.push({
 						_id: resData.data.createEvent._id,
 						title: resData.data.createEvent.title,
@@ -121,7 +106,7 @@ const EventsPage = () => {
 							_id: context.userId,
 						},
 					});
-					return { events: updatedEvents };
+					return updatedEvents;
 				});
 			})
 			.catch((err) => {
@@ -145,10 +130,7 @@ const EventsPage = () => {
               description
               date
               price
-              creator {
-                _id
-                email
-              }
+            
             }
           }
         `,
@@ -183,10 +165,7 @@ const EventsPage = () => {
 	};
 
 	const showDetailHandler = (eventId) => {
-		setState((prevState) => {
-			const selectedEvent = prevState.events.find((e) => e._id === eventId);
-			return { selectedEvent: selectedEvent };
-		});
+		setSelectedEvent(events.find((e) => e._id === eventId));
 	};
 
 	const bookEventHandler = () => {
