@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
 import AuthPage from "./pages/Auth";
 import BookingsPage from "./pages/Bookings";
 import EventsPage from "./pages/Events";
 import MainNavigation from "./components/Navigation/MainNavigation";
-import AuthContext from "./context/auth-context";
+import AuthContext from "./context/AuthContext";
 
 import "./App.css";
 
@@ -25,13 +25,13 @@ const App = () => {
 
 	return (
 		<BrowserRouter>
-			<React.Fragment>
+			<Fragment>
 				<AuthContext.Provider
 					value={{
-						token: token,
-						userId: userId,
-						login: login,
-						logout: logout,
+						token,
+						userId,
+						login,
+						logout,
 					}}
 				>
 					<MainNavigation />
@@ -46,7 +46,7 @@ const App = () => {
 						</Switch>
 					</main>
 				</AuthContext.Provider>
-			</React.Fragment>
+			</Fragment>
 		</BrowserRouter>
 	);
 };

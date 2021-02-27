@@ -1,19 +1,13 @@
-import React, { useState, useContext, setState, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 
 import "./Auth.css";
-import AuthContext from "../context/auth-context";
+import AuthContext from "../context/AuthContext";
 
 const AuthPage = () => {
-	const [isLogin] = useState(true);
+	const [isLogin, setIsLogin] = useState(true);
 	const emailRef = useRef(null);
 	const passwordRef = useRef(null);
-	const context = useContext(AuthContext);
-
-	const switchModeHandler = () => {
-		setState((prevState) => {
-			return { isLogin: !prevState.isLogin };
-		});
-	};
+	const authContext = useContext(AuthContext);
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
@@ -72,7 +66,8 @@ const AuthPage = () => {
 			})
 			.then((resData) => {
 				if (resData.data.login.token) {
-					context.login(
+					// console.log("sadasdasdasdsad", authContext);
+					authContext.login(
 						resData.data.login.token,
 						resData.data.login.userId,
 						resData.data.login.tokenExpiration
@@ -96,7 +91,7 @@ const AuthPage = () => {
 			</div>
 			<div className="form-actions">
 				<button type="submit">Submit</button>
-				<button type="button" onClick={switchModeHandler}>
+				<button type="button" onClick={() => setIsLogin(!isLogin)}>
 					Switch to {isLogin ? "Signup" : "Login"}
 				</button>
 			</div>
