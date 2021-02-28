@@ -66,7 +66,6 @@ const AuthPage = () => {
 			})
 			.then((resData) => {
 				if (resData.data.login.token) {
-					// console.log("sadasdasdasdsad", authContext);
 					authContext.login(
 						resData.data.login.token,
 						resData.data.login.userId,

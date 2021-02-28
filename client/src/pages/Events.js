@@ -1,7 +1,6 @@
 import React, {
 	useRef,
 	useState,
-	setState,
 	useContext,
 	useEffect,
 	Fragment,
@@ -95,7 +94,6 @@ const EventsPage = () => {
 			.then((resData) => {
 				setEvents(() => {
 					const updatedEvents = [...events];
-					console.log(updatedEvents);
 					updatedEvents.push({
 						_id: resData.data.createEvent._id,
 						title: resData.data.createEvent.title,
@@ -130,6 +128,7 @@ const EventsPage = () => {
               description
               date
               price
+			 
             
             }
           }
@@ -205,7 +204,7 @@ const EventsPage = () => {
 			})
 			.then((resData) => {
 				console.log(resData);
-				setState({ selectedEvent: null });
+				setSelectedEvent(null);
 			})
 			.catch((err) => {
 				console.log(err);
