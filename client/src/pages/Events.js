@@ -77,7 +77,7 @@ const EventsPage = () => {
 
 		const token = context.token;
 
-		fetch("http://localhost:5000/graphql", {
+		fetch("https://comm-man-backend.herokuapp.com/graphql", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -135,7 +135,7 @@ const EventsPage = () => {
         `,
 		};
 
-		fetch("http://localhost:5000/graphql", {
+		fetch("https://comm-man-backend.herokuapp.com/graphql", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -188,7 +188,7 @@ const EventsPage = () => {
 			},
 		};
 
-		fetch("http://localhost:5000/graphql", {
+		fetch("https://comm-man-backend.herokuapp.com/graphql", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {

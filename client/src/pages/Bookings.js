@@ -36,7 +36,7 @@ const BookingsPage = () => {
         `,
 		};
 
-		fetch("http://localhost:5000/graphql", {
+		fetch("https://comm-man-backend.herokuapp.com/graphql", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -77,7 +77,7 @@ const BookingsPage = () => {
 			},
 		};
 
-		fetch("http://localhost:5000/graphql", {
+		fetch("https://comm-man-backend.herokuapp.com/graphql", {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
