@@ -128,8 +128,10 @@ const EventsPage = () => {
               description
               date
               price
-			 
-            
+			  creator {
+				_id
+				email
+			  }
             }
           }
         `,
