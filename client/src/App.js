@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
 import AuthPage from "./pages/Auth";
@@ -13,14 +13,28 @@ const App = () => {
 	const [token, setToken] = useState(null);
 	const [userId, setUserId] = useState(null);
 
+	useEffect(() => {
+		const loggedInUserId = sessionStorage.getItem("userId");
+		const loggedInUserToken = sessionStorage.getItem("token");
+		if (loggedInUserId && loggedInUserToken) {
+			setUserId(loggedInUserId);
+			setToken(loggedInUserToken);
+		}
+	}, []);
+
 	const login = (token, userId) => {
-		setToken(token);
 		setUserId(userId);
+		setToken(token);
+		sessionStorage.setItem("userId", userId);
+		sessionStorage.setItem("token", token);
+		console.log("logged in");
 	};
 
 	const logout = () => {
 		setToken(null);
 		setUserId(null);
+		sessionStorage.clear();
+		console.log("logged out");
 	};
 
 	return (
