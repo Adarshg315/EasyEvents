@@ -11,7 +11,7 @@ const BookingsPage = () => {
 	const [bookings, setBookings] = useState([]);
 	const [outputType, setOutputType] = useState("list");
 
-	const context = useContext(AuthContext);
+	const bookContext = useContext(AuthContext);
 
 	useEffect(() => {
 		fetchBookings();
@@ -41,7 +41,7 @@ const BookingsPage = () => {
 			body: JSON.stringify(requestBody),
 			headers: {
 				"Content-Type": "application/json",
-				Authorization: "Bearer " + context.token,
+				Authorization: "Bearer " + bookContext.token,
 			},
 		})
 			.then((res) => {
@@ -82,7 +82,7 @@ const BookingsPage = () => {
 			body: JSON.stringify(requestBody),
 			headers: {
 				"Content-Type": "application/json",
-				Authorization: "Bearer " + context.token,
+				Authorization: "Bearer " + bookContext.token,
 			},
 		})
 			.then((res) => {
