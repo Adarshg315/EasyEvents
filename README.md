@@ -1,8 +1,10 @@
 # comansys
 community management system    
-<p>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-</p>
+
+![](https://img.shields.io/github/issues/Adarshg315/comm-man-sys?style=for-the-badge)
+![](https://img.shields.io/github/forks/Adarshg315/comm-man-sys?style=for-the-badge)
+![](https://img.shields.io/github/stars/Adarshg315/comm-man-sys?style=for-the-badge)
+
 
 ## Installation
 
