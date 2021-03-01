@@ -24,8 +24,4 @@ $ cd client && yarn start (to start frontend)
 ## Stay in touch
 
 - Author - [Adarsh Goyal](http://adarshgoyal.me/)
-- Website - [link](https://confident-sinoussi-91206d.netlify.app/)
 
-## License
-
-comansys is [MIT licensed](LICENSE).
