@@ -20,14 +20,13 @@ const EventsPage = () => {
 
 	var isActive = true;
 
-	const context = useContext(AuthContext);
+	const eventContext = useContext(AuthContext);
 
 	const titleElRef = useRef(null);
 	const priceElRef = useRef(null);
 	const dateElRef = useRef(null);
 	const descriptionElRef = useRef(null);
 
-	//componentDidMount and componentWillUnmount equivalent
 	useEffect(() => {
 		fetchEvents();
 		return () => {
@@ -75,7 +74,7 @@ const EventsPage = () => {
 			},
 		};
 
-		const token = context.token;
+		const token = eventContext.token;
 
 		fetch("https://comm-man-backend.herokuapp.com/graphql", {
 			method: "POST",
@@ -101,7 +100,7 @@ const EventsPage = () => {
 						date: resData.data.createEvent.date,
 						price: resData.data.createEvent.price,
 						creator: {
-							_id: context.userId,
+							_id: eventContext.userId,
 						},
 					});
 					return updatedEvents;
@@ -170,7 +169,7 @@ const EventsPage = () => {
 	};
 
 	const bookEventHandler = () => {
-		if (!context.token) {
+		if (!eventContext.token) {
 			setSelectedEvent(null);
 			return;
 		}
@@ -195,7 +194,7 @@ const EventsPage = () => {
 			body: JSON.stringify(requestBody),
 			headers: {
 				"Content-Type": "application/json",
-				Authorization: "Bearer " + context.token,
+				Authorization: "Bearer " + eventContext.token,
 			},
 		})
 			.then((res) => {
@@ -252,7 +251,7 @@ const EventsPage = () => {
 					canConfirm
 					onCancel={modalCancelHandler}
 					onConfirm={bookEventHandler}
-					confirmText={context.token ? "Book" : "Confirm"}
+					confirmText={eventContext.token ? "Book" : "Confirm"}
 				>
 					<h1>{selectedEvent.title}</h1>
 					<h2>
@@ -262,7 +261,7 @@ const EventsPage = () => {
 					<p>{selectedEvent.description}</p>
 				</Modal>
 			)}
-			{context.token && (
+			{eventContext.token && (
 				<div className="events-control">
 					<p>Share your own Events!</p>
 					<button className="btn" onClick={() => setCreating(true)}>
@@ -275,7 +274,7 @@ const EventsPage = () => {
 			) : (
 				<EventList
 					events={events}
-					authUserId={context.userId}
+					authUserId={eventContext.userId}
 					onViewDetail={showDetailHandler}
 				/>
 			)}
