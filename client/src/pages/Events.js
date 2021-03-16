@@ -5,21 +5,32 @@ import React, {
 	useEffect,
 	Fragment,
 } from "react";
+import "./Events.css";
+import {
+	FormGroup,
+	TextField,
+	Backdrop,
+	FormControl,
+	InputLabel,
+	OutlinedInput,
+	Paper,
+	Button,
+} from "@material-ui/core";
 import Modal from "../components/Modal/Modal";
-import Backdrop from "../components/Backdrop/Backdrop";
 import EventList from "../components/Events/EventList/EventList";
 import Spinner from "../components/Spinner/Spinner";
 import AuthContext from "../context/AuthContext";
-import "./Events.css";
+import useEventStyles from "./EventStyles";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 const EventsPage = () => {
 	const [creating, setCreating] = useState(false);
 	const [events, setEvents] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [selectedEvent, setSelectedEvent] = useState(null);
+	const classes = useEventStyles();
 
 	var isActive = true;
-
 	const eventContext = useContext(AuthContext);
 
 	const titleElRef = useRef(null);
@@ -217,31 +228,63 @@ const EventsPage = () => {
 			{(creating || selectedEvent) && <Backdrop />}
 			{creating && (
 				<Modal
+					className={classes.modal}
 					title="Add Event"
 					canCancel
 					canConfirm
 					onCancel={modalCancelHandler}
 					onConfirm={modalConfirmHandler}
 					confirmText="Confirm"
+					closeAfterTransition
+					BackdropComponent={Backdrop}
+					BackdropProps={{
+						timeout: 500,
+					}}
 				>
-					<form>
-						<div className="form-control">
-							<label htmlFor="title">Title</label>
-							<input type="text" id="title" ref={titleElRef} />
-						</div>
-						<div className="form-control">
-							<label htmlFor="price">Price</label>
-							<input type="number" id="price" ref={priceElRef} />
-						</div>
-						<div className="form-control">
-							<label htmlFor="date">Date</label>
-							<input type="datetime-local" id="date" ref={dateElRef} />
-						</div>
-						<div className="form-control">
-							<label htmlFor="description">Description</label>
-							<textarea id="description" rows="4" ref={descriptionElRef} />
-						</div>
-					</form>
+					<FormGroup className={classes.root} noValidate autoComplete="off">
+						<FormControl variant="outlined">
+							<InputLabel htmlFor="title">Title</InputLabel>
+							<OutlinedInput id="title" label="title" inputRef={titleElRef} />
+						</FormControl>
+
+						<FormControl variant="outlined">
+							<InputLabel htmlFor="price">Price</InputLabel>
+							<OutlinedInput
+								id="price"
+								label="price"
+								inputRef={priceElRef}
+								type="number"
+							/>
+						</FormControl>
+
+						<FormControl variant="outlined">
+							<TextField
+								id="description"
+								label="Description"
+								multiline
+								rows={4}
+								variant="outlined"
+								inputRef={descriptionElRef}
+							/>
+						</FormControl>
+
+						<FormControl variant="outlined">
+							{/* <InputLabel htmlFor="date">Date</InputLabel> */}
+							<TextField
+								id="date"
+								variant="outlined"
+								// label="date"
+								inputRef={dateElRef}
+								type="datetime-local"
+								label="Date"
+								// defaultValue="2017-05-24T10:30"
+								className={classes.textField}
+								InputLabelProps={{
+									shrink: true,
+								}}
+							/>
+						</FormControl>
+					</FormGroup>
 				</Modal>
 			)}
 			{selectedEvent && (
@@ -262,11 +305,18 @@ const EventsPage = () => {
 				</Modal>
 			)}
 			{eventContext.token && (
-				<div className="events-control">
-					<p>Share your own Events!</p>
-					<button className="btn" onClick={() => setCreating(true)}>
-						Create Event
-					</button>
+				<div className={classes.root}>
+					<Paper elevation={6}>
+						<Button
+							variant="contained"
+							color="primary"
+							className={classes.button}
+							startIcon={<AddCircleIcon />}
+							onClick={() => setCreating(true)}
+						>
+							Create Events
+						</Button>
+					</Paper>
 				</div>
 			)}
 			{isLoading ? (
