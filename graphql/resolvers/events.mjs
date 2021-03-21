@@ -2,7 +2,7 @@ import Event from "../../models/event.mjs";
 import User from "../../models/user.mjs";
 import { transformEvent } from "./merge.mjs";
 
-async function events() {
+const events = async () => {
 	try {
 		const events = await Event.find();
 		return events.map((event) => {
@@ -11,8 +11,8 @@ async function events() {
 	} catch (err) {
 		throw err;
 	}
-}
-async function createEvent(args, req) {
+};
+const createEvent = async (args, req) => {
 	if (!req.isAuth) {
 		throw new Error("Unauthenticated!");
 	}
@@ -40,6 +40,6 @@ async function createEvent(args, req) {
 		console.log(err);
 		throw err;
 	}
-}
+};
 
 export default { createEvent, events };

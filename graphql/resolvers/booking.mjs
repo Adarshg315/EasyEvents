@@ -2,7 +2,7 @@ import Event from "../../models/event.mjs";
 import Booking from "../../models/booking.mjs";
 import { transformBooking, transformEvent } from "./merge.mjs";
 
-async function bookings(args, req) {
+const bookings = async (args, req) => {
 	if (!req.isAuth) {
 		throw new Error("Unauthenticated!");
 	}
@@ -14,20 +14,31 @@ async function bookings(args, req) {
 	} catch (err) {
 		throw err;
 	}
-}
-async function bookEvent(args, req) {
+};
+const bookEvent = async (args, req) => {
 	if (!req.isAuth) {
 		throw new Error("Unauthenticated!");
 	}
 	const fetchedEvent = await Event.findOne({ _id: args.eventId });
+
+	try {
+		const bookings = await Booking.find({ user: req.userId });
+		await bookings.map((booking) => {
+			if (String(fetchedEvent._id) == String(booking.event))
+				throw new Error("Event already booked!");
+		});
+	} catch (error) {
+		throw err;
+	}
+
 	const booking = new Booking({
 		user: req.userId,
 		event: fetchedEvent,
 	});
 	const result = await booking.save();
 	return transformBooking(result);
-}
-async function cancelBooking(args, req) {
+};
+const cancelBooking = async (args, req) => {
 	if (!req.isAuth) {
 		throw new Error("Unauthenticated!");
 	}
@@ -39,6 +50,6 @@ async function cancelBooking(args, req) {
 	} catch (err) {
 		throw err;
 	}
-}
+};
 
 export default { bookings, cancelBooking, bookEvent };
