@@ -1,12 +1,13 @@
-const { buildSchema } = require("graphql");
+import { buildSchema } from "graphql";
 
-module.exports = buildSchema(`
+export default buildSchema(`
 type Booking {
     _id: ID!
     event: Event!
     user: User!
     createdAt: String!
     updatedAt: String!
+    
 }
 
 type Event {
@@ -16,6 +17,7 @@ type Event {
   price: Float!
   date: String!
   creator: User!
+  category: String!
 }
 
 type User {
