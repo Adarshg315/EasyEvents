@@ -1,5 +1,5 @@
-# comansys
-community management system    
+# EasyEvents
+Events Management System
 
 ![](https://img.shields.io/github/issues/Adarshg315/comm-man-sys?style=for-the-badge)
 ![](https://img.shields.io/github/forks/Adarshg315/comm-man-sys?style=for-the-badge)
