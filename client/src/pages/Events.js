@@ -9,7 +9,6 @@ import "./Events.css";
 import {
 	FormGroup,
 	TextField,
-	Backdrop,
 	FormControl,
 	InputLabel,
 	OutlinedInput,
@@ -22,6 +21,8 @@ import Spinner from "../components/Spinner/Spinner";
 import AuthContext from "../context/AuthContext";
 import useEventStyles from "./EventStyles";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import Backdrop from "../components/Backdrop/Backdrop";
+import baseUrl from "../config/baseUrl";
 
 const EventsPage = () => {
 	const [creating, setCreating] = useState(false);
@@ -87,7 +88,7 @@ const EventsPage = () => {
 
 		const token = eventContext.token;
 
-		fetch("https://comm-man-backend.herokuapp.com/graphql", {
+		fetch(baseUrl, {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -147,7 +148,7 @@ const EventsPage = () => {
         `,
 		};
 
-		fetch("https://comm-man-backend.herokuapp.com/graphql", {
+		fetch(baseUrl, {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -200,7 +201,7 @@ const EventsPage = () => {
 			},
 		};
 
-		fetch("https://comm-man-backend.herokuapp.com/graphql", {
+		fetch(baseUrl, {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -236,10 +237,10 @@ const EventsPage = () => {
 					onConfirm={modalConfirmHandler}
 					confirmText="Confirm"
 					closeAfterTransition
-					BackdropComponent={Backdrop}
-					BackdropProps={{
-						timeout: 500,
-					}}
+					// BackdropComponent={Backdrop}s
+					// BackdropProps={{
+					// 	timeout: 500,
+					// }}
 				>
 					<FormGroup className={classes.root} noValidate autoComplete="off">
 						<FormControl variant="outlined">

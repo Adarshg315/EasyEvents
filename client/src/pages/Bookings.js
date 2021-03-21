@@ -5,6 +5,7 @@ import AuthContext from "../context/AuthContext";
 import BookingList from "../components/Bookings/BookingList/BookingList";
 import BookingsChart from "../components/Bookings/BookingsChart/BookingsChart";
 import BookingsControls from "../components/Bookings/BookingsControls/BookingsControls";
+import baseUrl from "../config/baseUrl";
 
 const BookingsPage = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -15,6 +16,7 @@ const BookingsPage = () => {
 
 	useEffect(() => {
 		fetchBookings();
+		sessionStorage.getItem("bookings-array");
 	}, []);
 
 	const fetchBookings = () => {
@@ -36,7 +38,7 @@ const BookingsPage = () => {
         `,
 		};
 
-		fetch("https://comm-man-backend.herokuapp.com/graphql", {
+		fetch(baseUrl, {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -53,6 +55,7 @@ const BookingsPage = () => {
 			.then((resData) => {
 				const bookings = resData.data.bookings;
 				setBookings(bookings);
+				sessionStorage.setItem("bookings-array", bookings);
 				setIsLoading(false);
 			})
 			.catch((err) => {
@@ -77,7 +80,7 @@ const BookingsPage = () => {
 			},
 		};
 
-		fetch("https://comm-man-backend.herokuapp.com/graphql", {
+		fetch(baseUrl, {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -97,6 +100,7 @@ const BookingsPage = () => {
 						return booking._id !== bookingId;
 					});
 					setIsLoading(false);
+					sessionStorage.setItem("bookings-array", updatedBookings);
 					return setBookings(updatedBookings);
 				});
 			})
