@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef } from "react";
-
+import baseUrl from "../config/baseUrl";
 import "./Auth.css";
 import AuthContext from "../context/AuthContext";
 
@@ -51,7 +51,7 @@ const AuthPage = () => {
 			};
 		}
 
-		fetch("https://comm-man-backend.herokuapp.com/graphql", {
+		fetch(baseUrl, {
 			method: "POST",
 			body: JSON.stringify(requestBody),
 			headers: {
@@ -60,11 +60,16 @@ const AuthPage = () => {
 		})
 			.then((res) => {
 				if (res.status !== 200 && res.status !== 201) {
-					throw new Error("Failed!");
+					throw new Error("Incorrect Password!");
 				}
+
 				return res.json();
 			})
 			.then((resData) => {
+				if (resData.errors) {
+					console.log(resData.errors[0].message);
+				}
+
 				if (resData.data.login.token) {
 					authContext.login(
 						resData.data.login.token,
@@ -82,11 +87,11 @@ const AuthPage = () => {
 		<form className="auth-form" onSubmit={onSubmitHandler}>
 			<div className="form-control">
 				<label htmlFor="email">E-Mail</label>
-				<input type="email" id="email" ref={emailRef} />
+				<input type="email" id="email" ref={emailRef} required />
 			</div>
 			<div className="form-control">
 				<label htmlFor="password">Password</label>
-				<input type="password" id="password" ref={passwordRef} />
+				<input type="password" id="password" ref={passwordRef} required />
 			</div>
 			<div className="form-actions">
 				<button type="submit">Submit</button>
