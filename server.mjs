@@ -4,7 +4,7 @@ import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import graphQlSchema from "./graphql/schema/index.mjs";
 import graphQlResolvers from "./graphql/resolvers/index.mjs";
-import { resolve } from "path";
+import resolve from "path";
 import isAuth from "./middleware/is-auth.mjs";
 import cors from "cors";
 import {
@@ -29,6 +29,7 @@ app.use((req, res, next) => {
 	}
 	next();
 });
+
 app.use(isAuth);
 app.use(
 	"/graphql",

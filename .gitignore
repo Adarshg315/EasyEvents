@@ -1,6 +1,6 @@
 # dotenv environment variables file
 .env
-yarn.lock
+.yarn.lock
 yarn-error.log
 .vscode
 *.orig
