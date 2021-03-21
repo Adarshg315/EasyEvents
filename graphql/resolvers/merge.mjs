@@ -49,7 +49,7 @@ const user = async (userId) => {
 	}
 };
 
-const transformEvent = (event) => {
+export const transformEvent = (event) => {
 	return {
 		...event._doc,
 		_id: event.id,
@@ -58,7 +58,7 @@ const transformEvent = (event) => {
 	};
 };
 
-const transformBooking = (booking) => {
+export const transformBooking = (booking) => {
 	return {
 		...booking._doc,
 		_id: booking.id,
@@ -68,8 +68,3 @@ const transformBooking = (booking) => {
 		updatedAt: dateToString(booking._doc.updatedAt),
 	};
 };
-
-const _transformEvent = transformEvent;
-export { _transformEvent as transformEvent };
-const _transformBooking = transformBooking;
-export { _transformBooking as transformBooking };

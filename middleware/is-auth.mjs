@@ -1,4 +1,4 @@
-import verify from "jsonwebtoken";
+import jsonwebtoken from "jsonwebtoken";
 
 export default (req, res, next) => {
 	const authHeader = req.get("Authorization");
@@ -11,9 +11,11 @@ export default (req, res, next) => {
 		req.isAuth = false;
 		return next();
 	}
+
+	//token verification
 	let decodedToken;
 	try {
-		decodedToken = verify(token, "somesupersecretkey");
+		decodedToken = jsonwebtoken.verify(token, "somesupersecretkey");
 	} catch (err) {
 		req.isAuth = false;
 		return next();

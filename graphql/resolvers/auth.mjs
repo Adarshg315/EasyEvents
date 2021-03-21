@@ -1,12 +1,13 @@
 import pkg from "bcryptjs";
-import sign from "jsonwebtoken";
+import jsonwebtoken from "jsonwebtoken";
 import User from "../../models/user.mjs";
 
 const { hash, compare } = pkg;
-async function createUser(args) {
+
+const createUser = async (args) => {
 	try {
 		//existing user
-		const existingUser = await findOne({ email: args.userInput.email });
+		const existingUser = await User.findOne({ email: args.userInput.email });
 		if (existingUser) {
 			throw new Error("User exists already.");
 		}
@@ -25,18 +26,19 @@ async function createUser(args) {
 	} catch (err) {
 		throw err;
 	}
-}
+};
 
-async function login({ email, password }) {
+const login = async ({ email, password }) => {
 	const user = await User.findOne({ email: email });
 	if (!user) {
 		throw new Error("User does not exist!");
 	}
 	const isEqual = await compare(password, user.password);
+
 	if (!isEqual) {
-		throw new Error("Password is incorrect!");
+		throw new Error("Incorrect Password from Backend!");
 	}
-	const token = sign(
+	const token = jsonwebtoken.sign(
 		{ userId: user.id, email: user.email },
 		"somesupersecretkey",
 		{
@@ -44,6 +46,6 @@ async function login({ email, password }) {
 		}
 	);
 	return { userId: user.id, token: token, tokenExpiration: 1 };
-}
+};
 
 export default { login, createUser };
