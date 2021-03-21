@@ -7,10 +7,10 @@ import graphQlResolvers from "./graphql/resolvers/index.mjs";
 import resolve from "path";
 import isAuth from "./middleware/is-auth.mjs";
 import cors from "cors";
-import {
-	autoComplete,
-	getAutoCompleteData,
-} from "./autocomplete/autocomplete.mjs";
+// import {
+// 	autoComplete,
+// 	getAutoCompleteData,
+// } from "./autocomplete/autocomplete.mjs";
 
 const app = express();
 
@@ -49,8 +49,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //autoComplete
-app.get("/search", autoComplete);
-app.get("/get/:id", getAutoCompleteData);
+// app.get("/search", autoComplete);
+// app.get("/get/:id", getAutoCompleteData);
 
 app.listen(port, () => {
 	console.log(`server started at port ${port}`);
