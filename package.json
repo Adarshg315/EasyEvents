@@ -22,7 +22,7 @@
 		"graphql": "^15.5.0",
 		"jsonwebtoken": "^8.5.1",
 		"mongodb": "^3.6.5",
-		"mongoose": "5.11.15",
+		"mongoose": "5.13.3",
 		"path": "^0.12.7",
 		"socket.io": "^4.0.0"
 	},
